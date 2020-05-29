@@ -51,6 +51,7 @@ class Game {
 
   setBoard(log){
     this.selectedLog = log;
+    this.actualscore = log.board.scoreSum;
     this.assign(this.boardObj,log.board);
     this.draw();
   }
