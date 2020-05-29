@@ -88,15 +88,20 @@ body {
 }
 
 .output {
-    font-size: 0.8em;
+    font-size: 0.6em;
     color: rgba(128, 255, 128, 0.8);
     text-shadow:
             0 0 1px rgba(51, 255, 51, 0.4),
             0 0 2px rgba(255, 255, 255, 0.8);
+    margin-bottom: 5px;
 }
 
 .output::before {
-    content: "> ";
+    content: "> root :";
+}
+
+.text{
+    font-size: 0.8em;
 }
 
 
@@ -146,6 +151,11 @@ a::after {
 
 .board{
     width: 70%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+
 }
 
 .scores{
@@ -157,3 +167,53 @@ a::after {
     flex-direction: row;
     justify-content: space-between;
 }
+
+.card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease-out;
+}
+
+.bottom{
+    overflow-y: scroll;
+    height: 46%;
+}
+
+.showed{
+    opacity: 1;
+}
+
+.hidden{
+    opacity: 0;
+}
+
+.centered{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+::-webkit-scrollbar-thumb {
+    box-shadow:
+            0 0 1ex rgba(51, 255, 51, 1),
+            0 0 2px rgba(255, 255, 255, 0.8);
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+
