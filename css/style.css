@@ -88,6 +88,7 @@ body {
 }
 
 .output {
+    cursor: pointer;
     font-size: 0.6em;
     color: rgba(128, 255, 128, 0.8);
     text-shadow:
@@ -215,5 +216,11 @@ a::after {
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+
+.new, .selected-Log{
+    background-color: rgba(51, 255, 51, 0.4);
+}
+
+
 
 

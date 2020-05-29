@@ -11,11 +11,13 @@ class Drawer {
 
   drawLogs(logs){
     this.logView.innerHTML = '';
-    logs.reverse();
-    logs.forEach( log =>{
+    const clogs = [...logs].reverse();
+    clogs.forEach( log =>{
       let newDiv = document.createElement('div');
+      newDiv.addEventListener("click", () => {game.setBoard(log)});
       newDiv.className = 'output';
-      newDiv.innerHTML = log;
+      newDiv.className += game.selectedLog == log ? ' selected-Log' : '';
+      newDiv.innerHTML = log.text;
       this.logView.appendChild(newDiv);
     });
   }
@@ -26,7 +28,9 @@ class Drawer {
     for (let y = 0; y < board.height; y++) {
       for (let x = 0; x < board.width; x++) {
         let newDiv = document.createElement('div');
-        newDiv.className = board.actualBoardArray[x][y].value != 0 ? 'card section showed' : 'card section hidden';
+        newDiv.className = 'card section ';
+        newDiv.className += board.actualBoardArray[x][y].value != 0 ? 'showed ' : 'hidden ';
+        newDiv.className += board.actualBoardArray[x][y].new ? 'new ' : '';
         newDiv.innerHTML = board.actualBoardArray[x][y].value;
         this.boardView.appendChild(newDiv);
 

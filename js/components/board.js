@@ -23,16 +23,19 @@ class Board {
       const random = this.getRandomInt(0, this.emptyPositions.length);
       const position = this.emptyPositions[random];
       this.actualBoardArray[position.x][position.y].value = Math.random() < 0.4 ? 4 : 2;
+      this.actualBoardArray[position.x][position.y].new = true;
       this.deleteEmpty(random);
     }
   }
 
   setEmptyPositions() {
-    this.emptyPositions = []
+    this.emptyPositions = [];
     for (let x = 0; x < this.width; x++) {
       for (let y = 0; y < this.height; y++) {
         if (this.actualBoardArray[x][y].value == 0) {
           this.emptyPositions.push({x, y});
+        } else{
+          this.actualBoardArray[x][y].new = false;
         }
       }
     }
@@ -93,7 +96,7 @@ class Board {
     return direction.x < 0 || direction.y < 0 ? {x: (direction.x * -1) , y: (direction.y * -1)} : direction;
   }
 
-  move(direction) {
+  move(direction, callback) {
     this.actualBoardArray = this.getArray(
         direction,
         this.setBoard(this.getArray(direction,this.actualBoardArray), this.getDirection(direction))
@@ -101,6 +104,7 @@ class Board {
     this.unMatchAll();
     this.setEmptyPositions();
     this.addNewNumber();
+    return callback();
   }
 
   hasMovements(x,y){
@@ -142,6 +146,7 @@ class BoardCard {
   constructor(value) {
     this.value = value;
     this.matched = false;
+    this.new = true;
   }
 
 }
